@@ -1,0 +1,133 @@
+﻿<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Sigue aprendiendo - ReBocados</title>
+	<style>
+		:root{--ink:#16130e;--green:#536225;--moss:#6f7c3c;--paper:#eadfc4;--cream:#fffaf0;--line:#d5c5a3;--terracotta:#a7642b}
+		*{box-sizing:border-box}
+		body{margin:0;background:var(--paper);color:var(--ink);font-family:Arial,sans-serif}
+		.site-header{height:78px;display:flex;align-items:center;justify-content:space-between;padding:0 42px;background:rgba(22,19,14,.96);color:#fff}
+		.brand{display:flex;align-items:center;gap:12px;font-family:Georgia,serif;font-size:26px}
+		.brand img{width:38px;height:38px}
+		.nav{display:flex;gap:25px;font-size:11px;font-weight:900;letter-spacing:.13em;text-transform:uppercase;color:#f5eddb}
+		.hero{position:relative;display:grid;grid-template-columns:minmax(0,1.02fr) minmax(320px,.98fr);gap:42px;align-items:center;padding:52px clamp(24px,6vw,86px) 60px;min-height:calc(100vh - 78px);overflow:hidden}
+		.hero:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 15% 18%,rgba(255,250,240,.95),transparent 34%),radial-gradient(circle at 92% 72%,rgba(167,100,43,.18),transparent 34%),linear-gradient(180deg,#efe4c9,#e4d3ae)}
+		.hero:after{content:"";position:absolute;left:4vw;bottom:38px;width:180px;height:80px;border:1px solid rgba(83,98,37,.24);border-radius:50%;transform:rotate(-10deg)}
+		.hero>*{position:relative}
+		.eyebrow{display:flex;align-items:center;gap:14px;font-size:11px;font-weight:900;letter-spacing:.16em;text-transform:uppercase;color:var(--green)}
+		.eyebrow:before{content:"";width:34px;height:1px;background:currentColor}
+		h1{font-family:Georgia,serif;font-size:clamp(46px,6.2vw,86px);line-height:.9;margin:22px 0 26px;letter-spacing:-.04em;max-width:9ch}
+		.hero > div:first-child{max-width:640px;position:relative}
+		.hero-copy{max-width:560px;font-size:19px;line-height:1.65;color:#4d473b}
+		.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px}
+		.button{display:inline-flex;align-items:center;gap:14px;padding:17px 24px;border:1px solid var(--ink);background:var(--ink);color:#fff;text-decoration:none;font-size:11px;font-weight:900;letter-spacing:.13em;text-transform:uppercase}
+		.button.secondary{background:transparent;color:var(--ink)}
+		.visual{--mx:0;--my:0;position:relative;align-self:stretch;min-height:480px;max-width:620px;width:100%;justify-self:end;perspective:1000px;animation:rise .85s ease both .18s}
+		.visual-frame{position:relative;height:100%;min-height:480px;overflow:hidden;background:linear-gradient(180deg,#f3e9d3,#e5d4af);box-shadow:0 24px 70px rgba(22,19,14,.16);border-radius:28px;transform:translate3d(calc(var(--mx)*-10px),calc(var(--my)*-8px),0) rotateX(calc(var(--my)*-1.4deg)) rotateY(calc(var(--mx)*2deg));transition:transform .18s ease-out}
+		.visual-frame img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;transform:scale(1.01);transition:transform .7s ease}
+		.visual:hover .visual-frame img{transform:scale(1.04)}
+		.visual-layer{position:absolute;pointer-events:none;border-radius:999px;mix-blend-mode:soft-light;transition:transform .18s ease-out}
+		.visual-layer.leaf{right:10%;top:12%;width:110px;height:110px;background:radial-gradient(circle,rgba(83,98,37,.38),transparent 66%);transform:translate3d(calc(var(--mx)*18px),calc(var(--my)*14px),0)}
+		.visual-layer.crumb{left:8%;bottom:14%;width:138px;height:138px;background:radial-gradient(circle,rgba(167,100,43,.24),transparent 65%);transform:translate3d(calc(var(--mx)*-18px),calc(var(--my)*-14px),0)}
+		.visual-layer.glow{right:4%;bottom:6%;width:190px;height:190px;background:radial-gradient(circle,rgba(255,250,240,.38),transparent 65%);transform:translate3d(calc(var(--mx)*12px),calc(var(--my)*-18px),0)}
+		main{max-width:1220px;margin:0 auto;padding:76px 32px}
+		.thanks{display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,.48fr);gap:34px;align-items:stretch;margin:0 0 72px}
+		.thanks-main{background:var(--green);color:#fff;padding:42px;position:relative;overflow:hidden}
+		.thanks-main:after{content:"";position:absolute;right:-42px;bottom:-42px;width:180px;height:180px;border:1px solid rgba(255,255,255,.22);border-radius:50%}
+		.thanks-main h2{font-family:Georgia,serif;font-size:clamp(34px,4vw,62px);line-height:.98;margin:0 0 16px}
+		.thanks-main p{max-width:760px;margin:0;color:rgba(255,255,255,.88);font-size:18px;line-height:1.7}
+		.thanks-side{background:var(--cream);padding:32px;border:1px solid rgba(83,98,37,.22);display:flex;flex-direction:column;justify-content:center}
+		.thanks-side span{display:block;color:var(--green);font-size:12px;font-weight:900;letter-spacing:.13em;text-transform:uppercase;margin-bottom:12px}
+		.thanks-side strong{font-family:Georgia,serif;font-size:30px;line-height:1.08}
+		.thanks[data-thanks-parallax]{--px:0;--py:0;perspective:900px}
+		.thanks[data-thanks-parallax] .thanks-main{transform:translate3d(calc(var(--px)*-10px),calc(var(--py)*-8px),0);transition:transform .16s ease-out,box-shadow .25s ease;box-shadow:0 18px 46px rgba(22,19,14,.12)}
+		.thanks[data-thanks-parallax] .thanks-main:before{content:"";position:absolute;left:58%;top:-42px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(255,250,240,.18),transparent 62%);transform:translate3d(calc(var(--px)*22px),calc(var(--py)*18px),0)}
+		.thanks[data-thanks-parallax] .thanks-main:after{transform:translate3d(calc(var(--px)*18px),calc(var(--py)*14px),0)}
+		.thanks[data-thanks-parallax] .thanks-side{transform:translate3d(calc(var(--px)*12px),calc(var(--py)*10px),0) rotate(calc(var(--px)*.45deg));transition:transform .16s ease-out,box-shadow .25s ease;box-shadow:0 14px 34px rgba(22,19,14,.08)}
+		.thanks-mark{position:absolute;right:28px;top:24px;width:10px;height:10px;border-radius:50%;background:var(--cream);box-shadow:18px 26px 0 rgba(255,250,240,.45),-22px 48px 0 rgba(255,250,240,.32);opacity:.68;transform:translate3d(calc(var(--px)*28px),calc(var(--py)*22px),0);transition:transform .16s ease-out}
+		.intro{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:52px;margin-bottom:52px}
+		.intro h2,.future h2,.closing h2{font-family:Georgia,serif;font-size:clamp(38px,5vw,72px);line-height:.96;margin:0}
+		.lead{font-size:19px;line-height:1.65;color:#5b5447}
+		.resources{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+		.resource{position:relative;background:var(--cream);border:1px solid var(--line);min-height:430px;display:flex;flex-direction:column;overflow:hidden;transition:transform .28s ease,box-shadow .28s ease}
+		.resource:hover{transform:translateY(-7px);box-shadow:0 22px 50px rgba(22,19,14,.13)}
+		.resource img{width:100%;height:215px;object-fit:cover;display:block;transition:transform .65s ease}
+		.resource:hover img{transform:scale(1.06)}
+		.resource-body{padding:28px;display:flex;flex-direction:column;gap:14px;flex:1}
+		.resource-kicker{font-size:11px;font-weight:900;letter-spacing:.13em;text-transform:uppercase;color:var(--green)}
+		.resource h3{font-family:Georgia,serif;font-size:32px;line-height:1.05;margin:0}
+		.resource p{margin:0;color:#5b5447;line-height:1.58}
+		.resource a{margin-top:auto;color:var(--green);font-size:11px;font-weight:900;letter-spacing:.13em;text-transform:uppercase;text-decoration:none}
+		.closing{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,.62fr);gap:42px;align-items:center;margin:74px 0;padding:46px 0;border-top:1px solid rgba(83,98,37,.28);border-bottom:1px solid rgba(83,98,37,.28)}
+		.closing-card{background:var(--green);color:#fff;padding:34px}
+		.closing-card p{color:rgba(255,255,255,.88);line-height:1.6}
+		.future-note{background:var(--cream);border-left:6px solid var(--green);padding:28px;box-shadow:0 16px 38px rgba(22,19,14,.08)}
+		.future-note p{margin:0;font-size:18px;line-height:1.65;color:#514a3f}
+		.soft-strip{margin-top:80px;display:grid;grid-template-columns:260px 1fr;gap:34px;align-items:center}
+		.soft-strip img{width:100%;aspect-ratio:1;border-radius:50%;object-fit:cover;animation:float 8s ease-in-out infinite}
+		.soft-strip p{font-family:Georgia,serif;font-size:34px;line-height:1.15;margin:0}
+		[data-reveal]{animation:rise .75s ease both}
+		@keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+		@keyframes float{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-10px) rotate(2deg)}}
+		@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+		@media(hover:none),(max-width:900px){.visual-frame,.thanks[data-thanks-parallax] .thanks-main,.thanks[data-thanks-parallax] .thanks-side{transform:none}.visual-layer,.thanks-mark{display:none}}
+		@media(max-width:900px){.site-header{padding:0 22px}.nav{display:none}.hero{grid-template-columns:1fr;padding:44px 22px;gap:24px}.hero > div:first-child{max-width:none}.visual,.visual-frame{min-height:320px;max-width:none}.thanks,.intro,.resources,.closing,.soft-strip{grid-template-columns:1fr}main{padding:54px 22px}h1{font-size:50px;max-width:none}.thanks-main{padding:30px}}
+	</style>
+</head>
+<body>
+	<header class="site-header"><div class="brand"><img src="migracion wordpress/rebocados-theme/assets/images/logo-rb-granada.png" alt="">ReBocados</div><nav class="nav"><span>Talleres</span><span>Recetas</span><span>Consejos</span><span>Colaboraciones</span></nav></header>
+	<section class="hero">
+		<div><p class="eyebrow">Gracias por venir, aprender y cuidar</p><h1>Gracias por querer transformar el desperdicio en posibilidades</h1><p class="hero-copy">Este rinc&oacute;n nace como continuaci&oacute;n del taller: una forma bonita de seguir recordando que cada alimento tiene historia, valor y nuevas oportunidades antes de acabar en la basura.</p><div class="hero-actions"><a class="button" href="#recursos">Ver descargables</a><a class="button secondary" href="#volver">Qu&eacute; encontrar&aacute;s aqu&iacute;</a></div></div>
+		<div class="visual" data-hero-parallax><div class="visual-frame"><img src="migracion wordpress/rebocados-core/assets/downloads/landing-qr-parallax-hero.png" alt=""><span class="visual-layer leaf"></span><span class="visual-layer crumb"></span><span class="visual-layer glow"></span></div></div>
+	</section>
+	<main>
+		<section class="thanks" data-reveal data-thanks-parallax><div class="thanks-main"><span class="thanks-mark" aria-hidden="true"></span><h2>Gracias por mirar los alimentos con otros ojos.</h2><p>Asistir a un taller tambi&eacute;n es elegir una forma de cocinar m&aacute;s consciente: aprovechar mejor, comprar con intenci&oacute;n y descubrir que muchas veces el desperdicio empieza a reducirse con una idea sencilla.</p></div><div class="thanks-side"><span>Peque&ntilde;o gesto, gran cambio</span><strong>Cada receta aprovechada tambi&eacute;n cuenta.</strong></div></section>
+		<section class="intro" id="recursos"><div><p class="eyebrow">Material de apoyo</p><h2>Para llevarte el taller a casa</h2></div><p class="lead">Hemos preparado algunos recursos de muestra para que la experiencia no termine al salir del taller. M&aacute;s adelante Noelia podr&aacute; sustituirlos o a&ntilde;adir nuevos PDFs desde WordPress.</p></section>
+		<section class="resources">
+			<article class="resource"><img src="migracion wordpress/rebocados-theme/assets/images/servicio-recetas-ia.webp" alt=""><div class="resource-body"><span class="resource-kicker">PDF de bienvenida</span><h3>Mini gu&iacute;a de aprovechamiento</h3><p>Ideas r&aacute;pidas para organizar, conservar y transformar alimentos en casa.</p><a href="migracion wordpress/rebocados-core/assets/downloads/mini-guia-aprovechamiento.pdf">Descargar gu&iacute;a</a></div></article>
+			<article class="resource"><img src="migracion wordpress/rebocados-theme/assets/images/consejos.webp" alt=""><div class="resource-body"><span class="resource-kicker">Ficha pr&aacute;ctica</span><h3>Ficha para la nevera</h3><p>Un recordatorio sencillo para decidir qu&eacute; usar primero y evitar descartes innecesarios.</p><a href="migracion wordpress/rebocados-core/assets/downloads/ficha-nevera-desperdicio-cero.pdf">Descargar ficha</a></div></article>
+			<article class="resource"><img src="migracion wordpress/rebocados-theme/assets/images/taller-demostracion.webp" alt=""><div class="resource-body"><span class="resource-kicker">Checklist</span><h3>Compra y cocina consciente</h3><p>Una lista para mirar antes de comprar y convertir restos en nuevas comidas.</p><a href="migracion wordpress/rebocados-core/assets/downloads/checklist-compra-cocina.pdf">Ver recurso</a></div></article>
+		</section>
+		<section class="closing" id="volver"><div><p class="eyebrow">Una p&aacute;gina para volver</p><h2>Guarda este im&aacute;n: aqu&iacute; seguir&aacute; creciendo el contenido</h2><p class="lead">El mismo QR te traer&aacute; siempre a esta p&aacute;gina. Iremos sumando recetas, consejos, descargables y recursos para cocinar con m&aacute;s conciencia y menos desperdicio.</p></div><div class="closing-card"><p>La idea es sencilla: que cada taller deje una peque&ntilde;a continuidad en casa. Algo &uacute;til, bonito y f&aacute;cil de consultar desde el m&oacute;vil.</p></div></section>
+		<section class="closing future"><div><p class="eyebrow">Contenido vivo</p><h2>Un espacio preparado para crecer</h2><p class="lead">Noelia podr&aacute; ir a&ntilde;adiendo aqu&iacute; los recursos que necesite en cada etapa: documentos, enlaces, materiales de apoyo o contenidos especiales para quienes participen en sus talleres.</p></div><div class="future-note"><p>Este bloque no define todav&iacute;a qu&eacute; se subir&aacute;. Queda preparado para que Noelia pueda decidirlo m&aacute;s adelante y actualizarlo desde WordPress sin cambiar el QR.</p></div></section>
+		<section class="soft-strip"><img src="migracion wordpress/rebocados-theme/assets/images/crema-zanahoria.webp" alt=""><p>Nada se tira: primero se mira, se piensa y se transforma.</p></section>
+	</main>
+	<script>
+	(function(){
+		var hero = document.querySelector('[data-hero-parallax]');
+		if (hero && window.matchMedia && window.matchMedia('(hover:hover)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+			function moveHero(event){
+				var rect = hero.getBoundingClientRect();
+				var x = ((event.clientX - rect.left) / rect.width - 0.5) * 2;
+				var y = ((event.clientY - rect.top) / rect.height - 0.5) * 2;
+				hero.style.setProperty('--mx', x.toFixed(3));
+				hero.style.setProperty('--my', y.toFixed(3));
+			}
+			hero.addEventListener('mousemove', moveHero);
+			hero.addEventListener('mouseleave', function(){
+				hero.style.setProperty('--mx', '0');
+				hero.style.setProperty('--my', '0');
+			});
+		}
+		var block = document.querySelector('[data-thanks-parallax]');
+		if (!block || !window.matchMedia || !window.matchMedia('(hover:hover)').matches || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+		function move(event){
+			var rect = block.getBoundingClientRect();
+			var x = ((event.clientX - rect.left) / rect.width - 0.5) * 2;
+			var y = ((event.clientY - rect.top) / rect.height - 0.5) * 2;
+			block.style.setProperty('--px', x.toFixed(3));
+			block.style.setProperty('--py', y.toFixed(3));
+		}
+		block.addEventListener('mousemove', move);
+		block.addEventListener('mouseleave', function(){
+			block.style.setProperty('--px', '0');
+			block.style.setProperty('--py', '0');
+		});
+	})();
+	</script>
+</body>
+</html>
+
+

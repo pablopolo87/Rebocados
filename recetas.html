@@ -1,0 +1,73 @@
+﻿<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Recetas creativas para aprovechar cada parte de los alimentos.">
+  <title>Recetas con sentido — ReBocados</title>
+  <link rel="stylesheet" href="assets/css/styles.css?v=split-cover-v4">
+</head>
+<body>
+  <header class="site-header site-header--solid">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html" aria-label="ReBocados, inicio"><img class="brand-mark" src="assets/images/logo-rb-granada.png" alt="" width="48" height="48"><img class="brand-wordmark" src="assets/images/rebocados-wordmark-ia-v2.png" alt="ReBocados"></a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+      <nav class="primary-nav" id="primary-navigation" aria-label="Navegación principal">
+        <a href="talleres.html">Talleres</a><a href="recetas.html" aria-current="page">Recetas</a><a href="consejos.html">Consejos</a><a href="colaboraciones.html">Colaboraciones</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="split-feature split-feature--page-cover split-feature--recipe-cover">
+      <div class="split-feature-image">
+        <img src="assets/images/talleres-cliente-emplatado-2.jpeg" alt="Cuencos de cocina de aprovechamiento preparados para servir">
+      </div>
+      <div class="split-feature-copy" data-reveal>
+        <p class="eyebrow">Cocinar, transformar, disfrutar</p>
+        <h1>Recetas con sentido</h1>
+        <p>Recetas sabrosas, creativas y fáciles para aprovechar cada parte de los alimentos.</p>
+      </div>
+    </section>
+
+    <section class="recipe-listing">
+      <div class="container">
+        <div class="filter-bar filter-cards" aria-label="Filtrar recetas">
+          <button class="filter-button is-active" type="button" data-filter="all" data-description="Explora todas las recetas."><img src="assets/images/categoria-todas.webp" alt="" loading="eager"><span class="filter-copy"><strong>Todas</strong><small>Explora todas las recetas.</small></span></button>
+          <button class="filter-button" type="button" data-filter="temporada" data-description="Cocina con lo que está en su mejor momento."><img src="assets/images/categoria-temporada.webp" alt="" loading="lazy"><span class="filter-copy"><strong>De temporada</strong><small>Cocina con lo que está en su mejor momento.</small></span></button>
+          <button class="filter-button" type="button" data-filter="reinventa" data-description="Transforma lo que tienes en algo nuevo."><img src="assets/images/categoria-reinventalo.webp" alt="" loading="lazy"><span class="filter-copy"><strong>Reinvéntalo</strong><small>Transforma lo que tienes en algo nuevo.</small></span></button>
+          <button class="filter-button" type="button" data-filter="rapidas" data-description="Listo en nada, sin complicaciones."><img src="assets/images/categoria-marcha-pasa.webp" alt="" loading="lazy"><span class="filter-copy"><strong>Marcha y pasa</strong><small>Listo en nada, sin complicaciones.</small></span></button>
+          <button class="filter-button" type="button" data-filter="oportunidad" data-description="Ingredientes que aún tienen mucho que decir."><img src="assets/images/categoria-ultima-oportunidad.webp" alt="" loading="lazy"><span class="filter-copy"><strong>Última oportunidad</strong><small>Ingredientes que aún tienen mucho que decir.</small></span></button>
+        </div>
+        <p class="sr-only" data-filter-description aria-live="polite">Explora todas las recetas.</p>
+
+        <div class="recipe-grid">
+          <a class="recipe-card" data-category="temporada" href="receta.html?receta=crema-zanahoria" data-reveal>
+            <div class="recipe-card-image"><img src="assets/images/crema-zanahoria.webp" alt="Crema de zanahoria" loading="lazy"><span class="recipe-card-tag">De temporada</span></div>
+            <h2>Crema de zanahoria</h2><div class="recipe-meta"><span>35 min</span><span>Fácil</span></div>
+          </a>
+          <a class="recipe-card" data-category="oportunidad" href="receta.html?receta=salmorejo" data-reveal>
+            <div class="recipe-card-image"><img src="assets/images/salmorejo.webp" alt="Salmorejo de tomates maduros" loading="lazy"><span class="recipe-card-tag">Última oportunidad</span></div>
+            <h2>Salmorejo de tomates maduros</h2><div class="recipe-meta"><span>20 min</span><span>Fácil</span></div>
+          </a>
+          <a class="recipe-card" data-category="reinventa" href="receta.html?receta=crema-coliflor" data-reveal>
+            <div class="recipe-card-image"><img src="assets/images/crema-hojas-coliflor.webp" alt="Crema de hojas de coliflor" loading="lazy"><span class="recipe-card-tag">Reinvéntalo</span></div>
+            <h2>Crema de hojas de coliflor</h2><div class="recipe-meta"><span>40 min</span><span>Fácil</span></div>
+          </a>
+          <a class="recipe-card" data-category="rapidas" href="receta.html?receta=gazpacho-fresas" data-reveal>
+            <div class="recipe-card-image"><img src="assets/images/gazpacho-fresas.webp" alt="Gazpacho de fresas" loading="lazy"><span class="recipe-card-tag">Marcha y pasa</span></div>
+            <h2>Gazpacho de fresas</h2><div class="recipe-meta"><span>15 min</span><span>Fácil</span></div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="newsletter"><div class="container newsletter-inner"><div><h2>¿Nos seguimos?</h2><p>Recibe recetas, consejos y novedades directamente en tu buzón.</p></div><form class="newsletter-form" data-newsletter><label class="sr-only" for="newsletter-email">Correo electrónico</label><input id="newsletter-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="tu@email.com" required><button class="button" type="submit">Suscribirme</button></form><p class="form-message" aria-live="polite"></p></div></section>
+  </main>
+
+  <footer class="site-footer"><div class="container"><div class="footer-grid"><div class="footer-brand"><a class="brand" href="index.html"><img class="brand-mark" src="assets/images/logo-rb-granada.png" alt="" width="48" height="48"><img class="brand-wordmark" src="assets/images/rebocados-wordmark-ia-v2.png" alt="ReBocados"></a><p>Cocina sin huella. Aprende a mirar los alimentos de otra manera.</p></div><div class="footer-column"><h2>Navegación</h2><a href="talleres.html">Talleres</a><a href="recetas.html">Recetas</a><a href="consejos.html">Consejos</a><a href="historia.html">Mi historia</a></div><div class="footer-column"><h2>Legal</h2><a href="#">Aviso legal</a><a href="#">Privacidad</a><a href="#">Cookies</a></div><p class="footer-phrase">No tiramos comida,<br>descubrimos posibilidades.</p></div><div class="footer-bottom"><span>© <span data-current-year></span> ReBocados con Noelia</span><span>Cocina consciente, creativa y sin desperdicio.</span><a class="designer-credit" href="mailto:pablojlopezfernandez@gmail.com" aria-label="Diseño web por Pablo López. Correo: pablojlopezfernandez@gmail.com">Diseño web por Pablo López<span class="designer-credit-star" aria-hidden="true">✦</span><span class="designer-credit-email" role="tooltip">pablojlopezfernandez@gmail.com</span></a></div></div></footer>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
+
+
